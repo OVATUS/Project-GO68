@@ -1,0 +1,53 @@
+_format_version: "3.0"
+
+services:
+  - name: auth-service
+    url: http://auth-service:8080
+    routes:
+      - name: auth-route
+        paths:
+          - /auth
+    plugins:
+      - name: cors
+        config:
+          origins:
+            - http://localhost:5173
+          methods: [GET, POST, PUT, PATCH, DELETE, OPTIONS]
+          headers: [Authorization, Content-Type]
+          exposed_headers: [Authorization]
+          credentials: true
+          max_age: 3600
+
+  - name: menu-service
+    url: http://menu-service:8080
+    routes:
+      - name: menu-route
+        paths:
+          - /menu
+    plugins:
+      - name: cors
+        config:
+          origins:
+            - http://localhost:5173
+          methods: [GET, POST, PUT, PATCH, DELETE, OPTIONS]
+          headers: [Authorization, Content-Type]
+          exposed_headers: [Authorization]
+          credentials: true
+          max_age: 3600
+
+  - name: order-service
+    url: http://order-service:8080
+    routes:
+      - name: order-route
+        paths:
+          - /orders
+    plugins:
+      - name: cors
+        config:
+          origins:
+            - http://localhost:5173
+          methods: [GET, POST, PUT, PATCH, DELETE, OPTIONS]
+          headers: [Authorization, Content-Type]
+          exposed_headers: [Authorization]
+          credentials: true
+          max_age: 3600
